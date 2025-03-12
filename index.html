@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Friends' Birthday Directory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -19,6 +20,7 @@
             border-radius: 10px;
             display: inline-block;
             margin-top: 20px;
+            animation: bounce 1.5s infinite;
         }
         .container { 
             display: flex; 
@@ -36,7 +38,8 @@
             transition: transform 0.3s;
         }
         .friend:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            background: #ff7675;
         }
         .friend img { 
             width: 120px; 
@@ -45,17 +48,17 @@
             cursor: pointer; 
             border: 3px solid #f0932b;
         }
-        a { 
-            text-decoration: none; 
-            color: #2d3436; 
-            font-weight: bold; 
-            display: block; 
-            margin-top: 10px;
+        #countdown {
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>🎉 Friends' Birthday Directory 🎂</h1>
+    <h1 class="animate__animated animate__bounce">🎉 Friends' Birthday Directory 🎂</h1>
+    <p id="countdown"></p>
     <div class="container">
         <div class="friend"><a href="taha.html"><img src="taha.jpg"><p>Taha Deoliwala</p></a></div>
         <div class="friend"><a href="taikhum.html"><img src="taikhum.jpg"><p>Taikhum Ranwala</p></a></div>
@@ -64,9 +67,25 @@
         <div class="friend"><a href="hussains.html"><img src="hussains.jpg"><p>Hussain Sadikot</p></a></div>
         <div class="friend"><a href="murtaza.html"><img src="murtaza.jpg"><p>Murtaza Bharmal</p></a></div>
         <div class="friend"><a href="ammar.html"><img src="ammar.jpg"><p>Ammar Tahawala</p></a></div>
-        <div class="friend"><a href="burhanuddin.html"><img src="burhan.jpg"><p>Burhanuddin Kanchwala</p></a></div>
+        <div class="friend"><a href="burhanuddin.html"><img src="burhanuddin.jpg"><p>Burhanuddin Kanchwala</p></a></div>
         <div class="friend"><a href="ahemad.html"><img src="ahemad.jpg"><p>Ahemad Maimoon</p></a></div>
         <div class="friend"><a href="ibrahim.html"><img src="ibrahim.jpg"><p>Ibrahim Hariyanawala</p></a></div>
     </div>
+
+    <script>
+        function countdownToBirthday(dateString, elementId) {
+            let birthday = new Date(dateString);
+            let now = new Date();
+            birthday.setFullYear(now.getFullYear());
+            if (birthday < now) birthday.setFullYear(now.getFullYear() + 1);
+
+            let diff = birthday - now;
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            document.getElementById(elementId).innerHTML = 
+                "🎂 Next Birthday in: " + days + " days!";
+        }
+        countdownToBirthday("2025-06-15", "countdown");
+    </script>
 </body>
 </html>
