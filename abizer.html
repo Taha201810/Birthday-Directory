@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abizer's Birthday</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fireworks-js/2.1.3/fireworks.min.js"></script>
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -27,29 +28,66 @@
             border: 4px solid #00cec9;
             margin-top: 20px;
         }
-        h2 {
-            background: rgba(255, 255, 255, 0.2);
-            display: inline-block;
-            padding: 10px;
-            border-radius: 8px;
+        #message {
+            font-size: 20px;
+            font-weight: bold;
         }
-        a { 
-            text-decoration: none; 
-            color: yellow; 
-            font-weight: bold; 
-            display: inline-block; 
-            margin-top: 20px; 
-            background: rgba(255, 255, 255, 0.2); 
+        textarea {
+            width: 80%;
+            height: 50px;
+            margin-top: 20px;
+        }
+        button {
             padding: 10px;
-            border-radius: 8px;
+            margin-top: 10px;
+            background: yellow;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <h1>🎂 Abizer Badawala 🎉</h1>
     <img src="abizer.jpg" alt="Abizer">
-    <h2>Date of Birth: [09-02-2001]</h2>
-    <br>
+    
+    <h2>Date of Birth: March 09, 2001</h2>
+
+    <audio autoplay>
+        <source src="birthday-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <p id="message"></p>
+
+    <h2>🎈 Leave a Birthday Wish 🎈</h2>
+    <textarea id="wish" placeholder="Write your wish..."></textarea>
+    <button onclick="saveWish()">Submit</button>
+    <ul id="wishList"></ul>
+
+    <canvas id="fireworks"></canvas>
+
+    <script>
+        let messages = [
+            "🎉 Happy Birthday, Abizer! Have an amazing day! 🎂",
+            "🎈 Wishing you love, laughter, and cake! 🍰",
+            "🥳 Another year older, another year wiser!"
+        ];
+        document.getElementById("message").innerHTML = messages[Math.floor(Math.random() * messages.length)];
+
+        function saveWish() {
+            let wish = document.getElementById("wish").value;
+            let list = document.getElementById("wishList");
+            let li = document.createElement("li");
+            li.textContent = wish;
+            list.appendChild(li);
+            document.getElementById("wish").value = "";
+        }
+
+        const container = document.getElementById('fireworks');
+        const fireworks = new Fireworks.default(container, { intensity: 5 });
+        fireworks.start();
+    </script>
+
+    <br><br>
     <a href="index.html">⬅ Back to Directory</a>
 </body>
 </html>
