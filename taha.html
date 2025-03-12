@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taha's Birthday</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fireworks-js/2.1.3/fireworks.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.10.2/dist/index.umd.min.js"></script>
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -13,6 +13,7 @@
             color: white;
             margin: 0; 
             padding: 0;
+            overflow: hidden;
         }
         h1 {
             background-color: #6c5ce7;
@@ -44,13 +45,21 @@
             border: none;
             cursor: pointer;
         }
+        #fireworks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
     <h1>🎂 Taha Deoliwala 🎉</h1>
     <img src="taha.jpg" alt="Taha">
     
-    <h2>Date of Birth: March 12, 2000</h2>
+    <h2>Date of Birth: June 15, 2000</h2>
 
     <audio autoplay>
         <source src="birthday-song.mp3" type="audio/mpeg">
@@ -63,7 +72,7 @@
     <button onclick="saveWish()">Submit</button>
     <ul id="wishList"></ul>
 
-    <canvas id="fireworks"></canvas>
+    <div id="fireworks-container"></div>
 
     <script>
         let messages = [
@@ -82,8 +91,14 @@
             document.getElementById("wish").value = "";
         }
 
-        const container = document.getElementById('fireworks');
-        const fireworks = new Fireworks.default(container, { intensity: 5 });
+        // Fireworks Effect
+        const container = document.getElementById('fireworks-container');
+        const fireworks = new Fireworks.default(container, {
+            speed: 4,
+            intensity: 6,
+            particles: 150,
+            explosion: 5,
+        });
         fireworks.start();
     </script>
 
